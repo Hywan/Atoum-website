@@ -1,0 +1,284 @@
+@font-face {
+    font-family: Text;
+    src: url("../Font/FiraSans-Light.eot")  format("eot"),
+         url("../Font/FiraSans-Light.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Pre;
+    src: url("../Font/DroidSansMono.eot")     format("eot"),
+         url("../Font/DroidSansMono.woff")    format("woff"),
+         url("../Font/DroidSansMono.ttf")     format("truetype"),
+         url("../Font/DroidSansMono.svg#foo") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font: 1.2em/1.5em Text;
+    color: #07082e;
+    text-align: justify;
+    hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    overflow-x: hidden;
+    background: url("../Image/Background.jpg");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 200px;
+    background: orange;
+    transform: translateX(-200px);
+}
+
+    nav[aria-selected="true"] {
+        transform: translateX(0);
+    }
+
+    nav > ul {
+        display: table;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    nav > ul > li {
+        display: table-row;
+    }
+
+    nav > ul > li > a {
+        display: table-cell;
+        vertical-align: middle;
+        color: #f0e9dd;
+        text-decoration: none;
+    }
+
+    nav > ul > li > a > img {
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin: 0 auto;
+        vertical-align: middle;
+    }
+
+      @media all and (max-height: 450px) {
+
+          nav > ul > li > a > img {
+              display: inline-block;
+              width: 30px;
+              height: 30px;
+              margin-left: .5em;
+              float: left;
+          }
+      }
+
+      #nav-features {
+          background: #6f5f5d;
+      }
+
+      #nav-source {
+          background: #835d5b;
+      }
+
+      #nav-documentation {
+          background: #a26b61;
+      }
+
+      #nav-community {
+          background: #e38f71;
+      }
+
+      #nav-about {
+          color: #4b3431;
+          background: #f0b270;
+      }
+
+div.body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+    nav[aria-selected="true"] ~ div.body {
+        transform: translateX(200px);
+    }
+
+div[aria-controls="menu"] {
+    z-index: 1;
+    position: fixed;
+    top: .5em;
+    left: .5em;
+    width: 2.5em;
+    height: 2.5em;
+}
+    nav[aria-selected="true"] ~ div.body > div[aria-controls="menu"] {
+        transform: rotate(405deg);
+    }
+
+nav, div.body, div[aria-controls="menu"] {
+    transition: transform 500ms cubic-bezier(.26, 1.59, .64, 1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3em;
+    padding-top: 1em;
+}
+
+article {
+    padding-bottom: 4em;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+footer > p {
+    font-size: .8em;
+    text-align: center;
+}
+
+#content > p,
+#content > h1,
+#content > h2,
+#content > h3,
+#content > h4,
+#content > h5,
+#content > h6,
+#content > ol,
+#content > ul {
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+h1 {
+    text-align: center;
+}
+
+p {
+    margin: 1em 0;
+    clear: both;
+}
+
+em em {
+    font-style: normal;
+}
+
+code, pre, kbd, samp {
+    font-family: Pre;
+    font-size: .9em;
+    color: #072066;
+}
+
+pre {
+    clear: both;
+}
+
+pre {
+    position: relative;
+    font-size: 0.95em;
+    line-height: 1.25em;
+    padding: .5em 2em;
+    overflow-y: auto;
+    background: #fff url("../Image/Background_pre.jpg");
+    background-size: cover;
+}
+    pre > code {
+        color: inherit;
+        font-size: .95rem;
+    }
+
+    .token.comment,
+    .token.block-comment,
+    .token.prolog,
+    .token.doctype,
+    .token.cdata {
+        color: #7d8b99;
+    }
+
+    .token.punctuation {
+        color: #5f6364;
+    }
+
+    .token.property,
+    .token.tag,
+    .token.boolean,
+    .token.number,
+    .token.function-name,
+    .token.constant,
+    .token.symbol {
+        color: #c92c2c;
+    }
+
+    .token.selector,
+    .token.attr-name,
+    .token.string,
+    .token.function,
+    .token.builtin {
+        color: #2f9c0a;
+    }
+
+    .token.operator,
+    .token.entity,
+    .token.url,
+    .token.variable {
+        color: #a67f59;
+    }
+
+    .token.atrule,
+    .token.attr-value,
+    .token.keyword,
+    .token.class-name {
+        color: #1990b8;
+    }
+
+    .token.regex,
+    .token.important {
+        color: #e90;
+    }
+    .language-css .token.string,
+    .style .token.string {
+        color: #a67f59;
+    }
+
+    .token.important {
+        font-weight: normal;
+    }
+
+    .token.entity {
+        cursor: help;
+    }
+
+    .namespace {
+        opacity: .7;
+    }
+
+.text-center {
+    text-align: center;
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<overlay xmlns="http://hoa-project.net/xyl/xylophone">
+  <yield id="yContent">
+    <p class="text-center">atoum is a <strong>simple</strong>,
+    <strong>modern</strong> and <strong>intuitive</strong> unit testing
+    framework for PHP!</p>
+
+    <p>Hello, this is me :-)</p>
+    <pre><code class="language-php">namespace vendor\project\tests\units;
+
+require_once 'path/to/mageekguy.atoum.phar';
+
+include 'path/to/project/classes/helloWorld.php';
+
+use \mageekguy\atoum;
+use \vendor\project;
+
+class helloWorld extends atoum\test
+{
+    public function testSay()
+    {
+        $helloWorld = new project\helloWorld();
+
+        $this->string($helloWorld->say())->isEqualTo('Hello World!')
+        ;
+    }
+}</code></pre>
+    <p>Hello, this is me :-)</p>
+  </yield>
+</overlay>
