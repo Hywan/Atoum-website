@@ -53,6 +53,8 @@
       <p>atoum is the creation of Frédéric Hardy, all rights reserved.
          See the license, Twitter and Github.</p>
     </footer>
+
+    <div class="hover"></div>
   </div>
 
   <script>
