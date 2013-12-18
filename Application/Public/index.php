@@ -47,7 +47,8 @@ $router
         'index',
         'index'
     )
-    ->_get('_resource', '/Static/(?<resource>)');
+    ->_get('_resource', '/Static/(?<resource>)')
+    ->_get('github',    'https://github.com/atoum/(?<repository>)?');
 
 try {
 
