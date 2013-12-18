@@ -41,7 +41,7 @@
 
     <header>
       <a href="@root">
-        <img src="hoa://Application/Public/Image/Logo.png" alt="atoum" />
+        <img src="hoa://Application/Public/Image/Logo/Atoum.png" alt="atoum" />
       </a>
     </header>
 
