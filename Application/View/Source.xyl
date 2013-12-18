@@ -3,5 +3,68 @@
 <overlay xmlns="http://hoa-project.net/xyl/xylophone">
   <yield id="yContent">
     <h1>Source</h1>
+
+    <p>atoum is organized as follows:</p>
+    <ul>
+      <li><code>atoum</code>, the main repository,</li>
+      <li><code>atoum-documentation</code>, the documentation repository,</li>
+      <li><code>atoum-installer</code>, an easy way to install atoum,</li>
+      <li>other repositories for project specific usage.</li>
+    </ul>
+
+    <ul class="inline text-center">
+      <li><a href="#Github">
+              <img src="hoa://Application/Public/Image/Logo/Github.png"
+                   width="100px" alt="Github" /></a></li>
+      <li><a href="#Composer">
+              <img src="hoa://Application/Public/Image/Logo/Composer.png"
+                   width="100px" alt="Composer" /></a></li>
+      <li><a href="#Installer">
+              <img src="hoa://Application/Public/Image/Logo/Shell.png"
+                   width="100px" alt="Installer" /></a></li>
+      <li><a href="#Symfony">
+              <img src="hoa://Application/Public/Image/Logo/Symfony.png"
+                   width="100px" alt="Symfony" /></a></li>
+      <li><a href="#Behat">
+              <img src="hoa://Application/Public/Image/Logo/Behat.png"
+                   width="100px" alt="Behat" /></a></li>
+    </ul>
+
+    <h2 id="Github">Github</h2>
+
+    <p>All repositories are located on
+       <a href="@github">github.com/atoum</a>:</p>
+    <pre><code class="language-shell">$ git clone https://github.com/atoum/atoum.git atoum</code></pre>
+
+    <h2 id="Composer">Composer</h2>
+
+    <pre><code class="language-json">{
+    "require": {
+        "atoum/atoum": "dev-master"
+    }
+}</code></pre>
+
+    <h2 id="Installer">Installer</h2>
+
+    <pre><code class="language-shell">$ curl -s https://raw.github.com/atoum/atoum-installer/master/installer | php -- --phar
+$ php mageekguy.atoum.phar -h</code></pre>
+    <p>Or to get all the possibilities:</p>
+    <pre><code class="language-shell">$ curl -s https://raw.github.com/atoum/atoum-installer/master/installer | php -- --usage</code></pre>
+
+    <h2 id="Symfony">Symfony</h2>
+
+    <p>What we heard? You are working on a Symfony2 project?! Don't worry, we
+    have everything you need:</p>
+    <pre><code class="language-php">{
+    "require": {
+        "atoum/atoum": "dev-master",
+        "atoum/atoum-bundle": "dev-master"
+    }
+}</code></pre>
+
+    <h2 id="Behat">Behat</h2>
+
+    <p>You can wire atoum inside your Behat context and get the full assertions
+    set and fluent API. Again you will see that this is really easy to do!</p>
   </yield>
 </overlay>
