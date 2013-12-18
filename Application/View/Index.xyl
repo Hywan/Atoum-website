@@ -4,28 +4,54 @@
   <yield id="yContent">
     <p class="text-center">atoum is a <strong>simple</strong>,
     <strong>modern</strong> and <strong>intuitive</strong> unit testing
-    framework for PHP!</p>
+    framework for PHP! It is completly <strong>standalone</strong>, everything
+    is available and <strong>works out of the box</strong>:</p>
+    <ul>
+      <li data-item="★"><strong>Tests isolation</strong> and
+      <strong>parallelization</strong> to get better performances and avoid
+      side-effects on tests,</li>
+      <li data-item="★"><strong>Full-features mock engine</strong>,</li>
+      <li data-item="★"><strong>Adapters</strong> to fake PHP functions,</li>
+      <li data-item="★"><strong>Virtual streams</strong> to mock
+      filesystem,</li>
+      <li data-item="★">And many more!</li>
+    </ul>
 
-    <p>Hello, this is me :-)</p>
-    <pre><code class="language-php">namespace vendor\project\tests\units;
+    <h2>Do you have 5 minutes? <small>yeah, it's dead simple</small></h2>
 
-require_once 'path/to/mageekguy.atoum.phar';
-
-include 'path/to/project/classes/helloWorld.php';
-
-use \mageekguy\atoum;
-use \vendor\project;
-
-class helloWorld extends atoum\test
+    <pre><code class="language-php">&amp;lt;?php
+require_once 'mageekguy.atoum.phar';
+ 
+class aClass extends atoum
 {
-    public function testSay()
+    public function testMethod()
     {
-        $helloWorld = new project\helloWorld();
-
-        $this->string($helloWorld->say())->isEqualTo('Hello World!')
+        $this
+            ->if($object = new aClass())
+            ->and($aString = 'something')
+            ->and($anInteger = 42)
+            ->then
+                ->string($object->method($aString))
+                    ->isEqualTo(strrev($aString))
+                ->integer($object->method($anInteger))
+                    ->isEqualTo(1764)
         ;
     }
-}</code></pre>
-    <p>Hello, this is me :-)</p>
+}
+
+// Then: $ php test.php</code></pre>
+
+    <h2>Latest news</h2>
+
+    <ul>
+      <li>foo</li>
+      <li>bar</li>
+      <li>baz</li>
+      <li>qux</li>
+    </ul>
+
+    <h2>Activity</h2>
+
+    <h2>Who uses?</h2>
   </yield>
 </overlay>
