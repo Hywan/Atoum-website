@@ -70,6 +70,10 @@ nav {
         display: table-row;
     }
 
+    nav > ul > li::before {
+        content: "";
+    }
+
     nav > ul > li > a {
         display: table-cell;
         vertical-align: middle;
@@ -141,6 +145,7 @@ div.body {
         }
 
         nav[aria-selected="true"] ~ div.body > div.hover {
+            pointer-events: auto;
             opacity: .7;
             background: #000;
         }
@@ -208,6 +213,13 @@ h1 {
     text-align: center;
 }
 
+h2 { }
+
+    h2 > small {
+        color: #555;
+        font-size: 1em;
+    }
+
 p {
     margin: 1em 0;
     clear: both;
@@ -215,6 +227,67 @@ p {
 
 em em {
     font-style: normal;
+}
+
+
+li {
+    position: relative;
+    list-style: none;
+    margin-left: 1em;
+}
+
+    li::before {
+        position: absolute;
+        left: -1.3em;
+        cursor: default;
+        height: 100%;
+        width: 1.3em;
+        text-align: center;
+    }
+
+ul { }
+
+    ul > li::before {
+        content: "•";
+    }
+
+    ul > li[data-item]::before {
+        content: attr(data-item);
+    }
+
+    ul.inline {
+        padding: 0;
+    }
+
+    ul.inline > li {
+        display: inline-block;
+        padding: 0;
+    }
+
+    ul.inline > li::before {
+        display: none;
+    }
+
+ol {
+    counter-reset: ol 0;
+}
+
+    ol > li {
+        counter-increment: ol;
+    }
+
+    ol > li::before {
+        content: counter(ol);
+    }
+
+@media all and (max-width: 500px) {
+    li {
+        margin-left: -1.3em;
+    }
+
+    li li {
+        margin-left: -.25em;
+    }
 }
 
 code, pre, kbd, samp {
