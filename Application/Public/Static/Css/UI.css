@@ -130,7 +130,8 @@ div.body {
 
     @supports ( pointer-events: none ) {
 
-        div.body > div.hover {
+        div.body::after {
+            content: ' ';
             position: absolute;
             top: 0;
             left: 0;
@@ -144,7 +145,7 @@ div.body {
             -webkit-transition: opacity 300ms ease-out;
         }
 
-        nav[aria-selected="true"] ~ div.body > div.hover {
+        nav[aria-selected="true"] ~ div.body::after {
             pointer-events: auto;
             opacity: .7;
             background: #000;
