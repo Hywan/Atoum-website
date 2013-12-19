@@ -8,4 +8,4 @@ To run it:
 You will need Hoa, thus:
 
     $ git clone git@git.hoa-project.net:Central /usr/local/lib/Hoa.central
-    $ ln -s /usr/local/lib/Hoa.central /usr/local/lib/Hoa
+    $ ln -s /usr/local/lib/Hoa.central/Hoa /usr/local/lib/Hoa
