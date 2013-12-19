@@ -148,7 +148,6 @@ div.body {
         nav[aria-selected="true"] ~ div.body::after {
             pointer-events: auto;
             opacity: .7;
-            background: #000;
         }
     }
 
@@ -160,19 +159,26 @@ div.body {
 div[aria-controls="menu"] {
     z-index: 1;
     position: fixed;
-    top: .5em;
-    left: .5em;
+    top: 10px;
+    left: 0;
+    margin-left: 10px;
     width: 2.5em;
     height: 2.5em;
+    transform: rotate(-360deg) translateZ(0);
+    -webkit-transform: translateZ(0);
 }
-    nav[aria-selected="true"] ~ div.body > div[aria-controls="menu"] {
-        transform: rotate(405deg);
-        -webkit-transform: rotate(405deg);
+
+    nav[aria-selected="true"] ~ div[aria-controls="menu"] {
+        transform: rotate(45deg) translateZ(0);;
+        -webkit-transform: rotate(405deg) translateZ(0);
+        margin-left: 210px;
     }
 
 nav, div.body, div[aria-controls="menu"] {
-    transition: transform 500ms cubic-bezier(.26, 1.59, .64, 1);
-    -webkit-transition: -webkit-transform 500ms cubic-bezier(.26, 1.59, .64, 1);
+    transition: 500ms cubic-bezier(.26, 1.59, .64, 1);
+    transition-property: transition margin-left;
+    -webkit-transition: 500ms cubic-bezier(.26, 1.59, .64, 1);
+    -webkit-transition-property: -webkit-transform margin-left;
 }
 
 header {

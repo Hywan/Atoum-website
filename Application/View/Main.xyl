@@ -32,13 +32,12 @@
     </ul>
   </nav>
 
+  <div aria-controls="menu">
+    <img src="hoa://Application/Public/Image/Icon/Circled_plus.svg"
+         alt="Menu" />
+  </div>
+
   <div class="body">
-
-    <div aria-controls="menu">
-      <img src="hoa://Application/Public/Image/Icon/Circled_plus.svg"
-           alt="Menu" />
-    </div>
-
     <header>
       <a href="@root">
         <img src="hoa://Application/Public/Image/Logo/Atoum.png" alt="atoum" />
