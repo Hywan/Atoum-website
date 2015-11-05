@@ -1,5 +1,4 @@
 @font-face {
-
     font-family: Text;
     src: url('../Font/FiraSans-Light.eot')  format('eot'),
          url('../Font/FiraSans-Light.woff') format('woff');
@@ -30,7 +29,7 @@ html {
 
 body {
     font: 1.2em/1.5em Text;
-    color: #07082e;
+    color: #f5f2e7;
     text-align: justify;
     hyphens: auto;
     min-height: 100%;
@@ -46,7 +45,6 @@ nav {
     left: -50px;
     height: 100vh;
     width: 250px;
-    background: orange;
     transform: translateX(-200px);
     -webkit-transform: translateX(-200px);
 }
@@ -75,6 +73,7 @@ nav {
         display: table-cell;
         vertical-align: middle;
         color: #f0e9dd;
+        font-variant: all-small-caps;
         text-decoration: none;
         padding-left: 50px;
         cursor: pointer;
@@ -99,24 +98,24 @@ nav {
       }
 
       #nav-features {
-          background: #6f5f5d;
+          background: rgba(111, 95, 93, .6);
       }
 
       #nav-source {
-          background: #835d5b;
+          background: rgba(131, 93, 91, .6);
       }
 
       #nav-documentation {
-          background: #a26b61;
+          background: rgba(162, 107, 97, .6);
       }
 
       #nav-community {
-          background: #e38f71;
+          background: rgba(227, 143, 113, .6);
       }
 
       #nav-about {
           color: #4b3431;
-          background: #f0b270;
+          background: rgba(240, 178, 112, .6);
       }
 
 #body { }
@@ -158,6 +157,13 @@ nav {
     transform: rotate(-360deg) translateZ(0);
     -webkit-transform: translateZ(0);
 }
+
+    [aria-controls='menu'] > svg circle,
+    [aria-controls='menu'] > svg line {
+        fill: none;
+        stroke: #f5f2e7;
+        stroke-width: 4;
+    }
 
     nav[aria-selected='true'] ~ [aria-controls='menu'] {
         transform: rotate(45deg) translateZ(0);
