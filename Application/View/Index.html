@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>atoum, the modern, simple and intuitive PHP test framework</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-type" content="text/javascript; charset=utf-8" />
+  <meta http-equiv="content-type" content="text/css; charset=utf-8" />
+
+  <meta name="viewport" content="initial-scale=1.0" />
+
+  <link rel="stylesheet" href="/Static/Css/UI.css" type="text/css" />
+</head>
+<body>
+
+<script type="text/x-handlebars">
+  <nav id="menu" aria-selected="false" aria-hidden="true">
+    <ul>
+      <li>
+        <a {{action 'linkTo' 'features'}} id="nav-features">
+          <img src="/Static/Image/Icon/Features.svg" />
+          features
+        </a>
+      </li>
+      <li>
+        <a {{action 'linkTo' 'sources'}} id="nav-source">
+          <img src="/Static/Image/Icon/Source.svg" />
+          sources
+        </a>
+      </li>
+      <li>
+        <a href="http://docs.atoum.org/" id="nav-documentation">
+          <img src="/Static/Image/Icon/Documentation.svg" />
+          documentations
+        </a>
+      </li>
+      <li>
+        <a {{action 'linkTo' 'community'}} id="nav-community">
+          <img src="/Static/Image/Icon/Community.svg" />
+          community
+        </a>
+      </li>
+      <li>
+        <a {{action 'linkTo' 'about'}} id="nav-about">
+          <img src="/Static/Image/Icon/About.svg" />
+          about
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div {{action 'toggleMenu'}} aria-controls="menu">
+    <img src="/Static/Image/Icon/Circled_plus.svg" alt="Menu" />
+  </div>
+
+  <div id="body">
+    <header>
+      {{#link-to 'index'}}
+        <img src="/Static/Image/Logo/Atoum.png" alt="atoum" />
+      {{/link-to}}
+    </header>
+
+    <article id="content">
+      {{outlet}}
+    </article>
+
+    <footer>
+      <p>
+        atoum is the creation of Frédéric Hardy, all rights reserved.
+        See
+        <a href="https://raw.githubusercontent.com/atoum/atoum/master/COPYING">the license</a>,
+        <a href="https://twitter.com/atoum_org/">Twitter</a> and
+        <a href="https://github.com/atoum/">Github</a>.
+      </p>
+    </footer>
+  </div>
+</script>
+
+<script type="text/x-handlebars" id="index">
+  <h1>atoum</h1>
+
+  <p class="text-center">
+    <a
+      aria-label="Star atoum/atoum on GitHub"
+      data-count-aria-label="# stargazers on GitHub"
+      data-count-api="/repos/atoum/atoum#stargazers_count"
+      data-count-href="/atoum/atoum/stargazers"
+      data-style="mega"
+      data-icon="octicon-star"
+      href="https://github.com/atoum/atoum"
+      class="github-button">Star</a>
+    <a
+      aria-label="Fork atoum/atoum on GitHub"
+      data-count-aria-label="# forks on GitHub"
+      data-count-api="/repos/atoum/atoum#forks_count"
+      data-count-href="/atoum/atoum/network"
+      data-style="mega"
+      data-icon="octicon-repo-forked"
+      href="https://github.com/atoum/atoum/fork"
+      class="github-button">Fork</a>
+    <a
+      aria-label="Download atoum/atoum on GitHub"
+      data-style="mega"
+      data-icon="octicon-cloud-download"
+      href="https://github.com/atoum/atoum/releases/latest"
+      class="github-button">Download</a>
+    <br />
+    atoum is a <strong>simple</strong>, <strong>modern</strong> and
+    <strong>intuitive</strong> unit testing framework for PHP! It is completly
+    <strong>standalone</strong>, everything is available and <strong>works out
+    of the box</strong>:
+  </p>
+
+  <ul>
+    <li data-item="★">
+      <strong>Tests isolation</strong> and <strong>parallelization</strong> to
+      get better performances and avoid side-effects on tests,
+    </li>
+    <li data-item="★">
+      <strong>Full-features mock engine</strong>,
+    </li>
+    <li data-item="★">
+      <strong>Adapters</strong> to fake PHP functions,
+    </li>
+    <li data-item="★">
+      <strong>Virtual streams</strong> to mock filesystem,
+    </li>
+    <li data-item="★">
+      And many more!
+    </li>
+  </ul>
+</script>
+
+<script type="text/x-handlebars" id="features">
+  <h1>Features</h1>
+
+  <section>
+    <h2>Flexible structure</h2>
+  </section>
+
+  <section>
+    <h2>Execution engines</h2>
+  </section>
+
+  <section>
+    <h2>Vocabulary</h2>
+  </section>
+
+  <section>
+    <h2>Meaningful asserters</h2>
+  </section>
+
+  <section>
+    <h2>Mocks</h2>
+  </section>
+
+  <section>
+    <h2>Virtual file system</h2>
+  </section>
+
+  <section>
+    <h2>Reports</h2>
+  </section>
+
+  <section>
+    <h2>Third-party integration</h2>
+  </section>
+
+  <section>
+    <h2>Fast</h2>
+  </section>
+
+  <section>
+    <h2>Extensions</h2>
+  </section>
+</script>
+
+<script type="text/x-handlebars" id="sources">
+  <h1>Sources</h1>
+</script>
+
+<script type="text/x-handlebars" id="community">
+  <h1>Community</h1>
+</script>
+
+<script type="text/x-handlebars" id="about">
+  <h1>About</h1>
+</script>
+
+<script src="/Static/Vendor/jquery/dist/jquery.min.js"></script>
+<script src="/Static/Vendor/ember/ember.min.js"></script>
+<script src="/Static/Vendor/ember/ember-template-compiler.js"></script>
+<script src="/Static/Vendor/ember-data/ember-data.min.js"></script>
+<script src="/Static/Javascript/Application.js"></script>
+<script src="https://buttons.github.io/buttons.js" async defer id="github-bjs"></script>
+
+</body>
+</html>

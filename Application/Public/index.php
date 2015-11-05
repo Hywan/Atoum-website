@@ -1,16 +1,42 @@
 <?php
 
-require_once '/usr/local/lib/Hoa/Core/Core.php';
+require_once
+    dirname(__DIR__) . DIRECTORY_SEPARATOR .
+    'Bootstrap.php';
 
-\Hoa\Core::enableErrorHandler();
-\Hoa\Core::enableExceptionHandler();
+use Hoa\Core;
+use Hoa\Dispatcher;
+use Hoa\Router;
 
-$dispatcher = new \Hoa\Dispatcher\Basic(array(
-    'asynchronous.action' => '(:%synchronous.action:)'
-));
-$router = new \Hoa\Router\Http();
+Core::enableErrorHandler();
+Core::enableExceptionHandler();
+
+$dispatcher = new Dispatcher\ClassMethod([
+    'synchronous.call'  => 'Application\Resource\(:call:U:)',
+    'synchronous.able'  => '(:%variables._method:U:)',
+    'asynchronous.call' => '(:%synchronous.call:)',
+    'asynchronous.able' => '(:%synchronous.able:)'
+]);
+$router = new Router\Http();
 
 $router
+    // Private rules.
+    ->_get(
+        '_resource',
+        '/Static/(?<resource>)'
+    )
+    ->_get(
+        'github',
+        'https://github.com/atoum/(?<repository>)?'
+    )
+
+    // Public rules.
+    ->get(
+        'fallback',
+        '/.*',
+        'Fallback'
+    )
+    /*
     ->get(
         'features',
         '/features\.html',
@@ -46,21 +72,7 @@ $router
         '/',
         'index',
         'index'
-    )
-    ->_get('_resource', '/Static/(?<resource>)')
-    ->_get('github',    'https://github.com/atoum/(?<repository>)?');
+    )*/
+    ;
 
-try {
-
-    $dispatcher->dispatch($router);
-}
-catch ( \Hoa\Core\Exception $e ) {
-
-    var_dump($e->raise(true));
-    exit;
-
-    $router->route('/error.html');
-    $rule                                                = &$router->getTheRule();
-    $rule[\Hoa\Router\Http::RULE_VARIABLES]['exception'] = $e;
-    $dispatcher->dispatch($router);
-}
+$dispatcher->dispatch($router);

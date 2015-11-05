@@ -1,0 +1,8 @@
+{
+  "name": "aminehamza/site",
+  "private": true,
+  "dependencies": {
+    "ember": "~2.1.0",
+    "ember-data": "~2.1.0"
+  }
+}

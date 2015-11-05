@@ -1,20 +1,31 @@
 <?php
 
-require_once '/usr/local/lib/Hoa/Core/Core.php';
+require_once
+    dirname(__DIR__) . DIRECTORY_SEPARATOR .
+    'Bootstrap.php';
 
-$router = new \Hoa\Router\Http();
+use Hoa\Dispatcher;
+use Hoa\File;
+use Hoa\Mime;
+use Hoa\Router;
+
+$router = new Router\Http();
 $router
-    ->any('a', '.*', function ( \Hoa\Dispatcher\Kit $_this ) {
-
+    ->any('a', '.*', function (Dispatcher\Kit $_this) {
         $uri  = $_this->router->getURI();
         $file = __DIR__ . DS . $uri;
 
-        if(!empty($uri) && true === file_exists($file)) {
+        if (!empty($uri) && true === file_exists($file)) {
+            $stream = new File\Read($file);
 
-            $stream = new \Hoa\File\Read($file);
-            $mime   = new \Hoa\Mime($stream);
+            try {
+                $mime  = new Mime($stream);
+                $_mime = $mime->getMime();
+            } catch (Mime\Exception $e) {
+                $_mime = 'text/plain';
+            }
 
-            header('Content-Type: ' . $mime->getMime());
+            header('Content-Type: ' . $_mime);
             echo $stream->readAll();
 
             return;
@@ -23,5 +34,5 @@ $router
         require 'index.php';
     });
 
-$dispatcher = new \Hoa\Dispatcher\Basic();
+$dispatcher = new Dispatcher\Basic();
 $dispatcher->dispatch($router);
