@@ -10,6 +10,7 @@
   <meta name="viewport" content="initial-scale=1.0" />
 
   <link rel="stylesheet" href="/Static/Css/UI.css" type="text/css" />
+  <link rel="stylesheet" href="/Static/Vendor/prism/plugins/line-numbers/prism-line-numbers.css" type="text/css" />
 </head>
 <body>
 
@@ -62,12 +63,12 @@
 
   <div id="body">
     <header>
-      {{#link-to 'index'}}
+      {{#link-to 'index' class="bare"}}
         <img src="/Static/Image/Logo/Atoum.png" alt="atoum" />
       {{/link-to}}
     </header>
 
-    <article id="content">
+    <article>
       {{outlet}}
     </article>
 
@@ -141,43 +142,171 @@
 <script type="text/x-handlebars" id="features">
   <h1>Features</h1>
 
-  <section>
+  <p class="text-center">
+    atoum is a full-featured testing framework. Judge for yourself.
+  </p>
+
+  <section class="visual-section">
     <h2>Flexible structure</h2>
+
+    <p>Test suites, test cases, directory names… feel free to rename everything
+    to fit your particular needs.</p>
   </section>
 
-  <section>
+  <section class="visual-section">
     <h2>Execution engines</h2>
+
+    <p>By default, atoum provides three execution engines:</p>
+    <ul>
+      <li>
+        <strong>Inline</strong>, one test case after another in the same
+        process,
+      </li>
+      <li>
+        <strong>Isolate</strong>, one test case after another but each time in a
+        new process,
+      </li>
+      <li>
+        <strong>Concurrent</strong>, “all” test cases at the same time in
+        separated processes.
+      </li>
+    </ul>
+    <p>A specific engine can be defined per test case in addition to a default
+    one.</p>
   </section>
 
-  <section>
+  <section class="visual-section">
     <h2>Vocabulary</h2>
+
+    <p>Depending of the kind of tests we are making, there is several ways to
+    write a test case. The “classic” (old) way is procedural:</p>
+  <pre><code class="language-php line-numbers">$x      = 1;
+$y      = 2;
+$result = $x + $y;
+
+$this->boolean($result === 3)->isTrue();</code></pre>
+    <p>The “smarter” way by really using atoum's asserters:</p>
+  <pre><code class="language-php line-numbers">$x      = 1;
+$y      = 2;
+$result = $x + $y;
+
+$this->integer($result)->isEqualTo(3);</code></pre>
+    <p>The “academic” way:</p>
+    <pre><code class="language-php line-numbers">$this
+    ->given(
+        $x = 1,
+        $y = 2
+    )
+    ->when($result = $x + $y)
+    ->then
+        ->integer($result)
+            ->isEqualTo(3);</code></pre>
+    <p>In the later example, the <code>given</code>, <code>when</code> and
+    <code>then</code> keywords are “empty asserter”. They execute nothing.
+    They are used to provide a better test case design.</p>
+
   </section>
 
-  <section>
+  <section class="visual-section">
     <h2>Meaningful asserters</h2>
+
+    <p>atoum provides a
+    <a href="http://docs.atoum.org/en/latest/chapter2.html#asserters">full-featured
+    set of natural and expressive assertions</a> making tests as much readable
+    as possible. The following example asserts the integer <code>150</code> is
+    greater than <code>100</code> and lower than or equal to
+    <code>200</code>:</p>
+    <pre><code class="language-php line-numbers">$this
+    ->integer(150)
+        ->isGreaterThan(100)
+        ->isLowerThanOrEqualTo(200);</code></pre>
+    <p>The following example asserts that <code>1 - 0.97</code> is nearly equal
+    to <code>0.03</code> (which is
+    <a href="http://www.floating-point-gui.de/errors/comparison/">strictly
+    false in Computer Science</a>):</p>
+    <pre><code class="language-php line-numbers">$this
+    ->float(1 - 0.97)
+        ->isNearlyEqualTo(0.03) // passes
+        ->isEqualTo(0.03);      // fails</code></pre>
+    <p>Arrays, strings, objets… all of them have specific collections of
+    asserters. In addition to provide a better readability, they provide a
+    better <strong>feedback</strong> when a test fails because atoum knows what
+    you meant to do.</p>
+    <p>A “<strong>diff</strong>” between the expected value and the
+    computed value is also computed when a test fails.</p>
   </section>
 
-  <section>
+  <section class="visual-section">
     <h2>Mocks</h2>
+
+    <p>Mocks able to close dependencies of your system under test. Test
+    cases will be faster to build and to execute. atoum provides mocking
+    for:</p>
+    <ul>
+      <li><strong>Class</strong>, by simply using the top-namespace
+      <code>mock</code> (case insensitive); for instance, the following example
+      will mock the <code>Foo\Bar</code> class and will provide a new
+      implementation for the <code>methodBaz</code> method:</li>
+    </ul>
+    <pre><code class="language-php line-numbers">$mockedObject = new \Mock\Foo\Bar();
+$mockedObject->methodBaz = function ($x) {
+    return $x * 2;
+};</code></pre>
+    <ul>
+      <li><strong>Function</strong>, by using the <code>function</code>
+      “asserter”; the following example will mock the
+      <a href="http://php.net/session_start"><code>session_start</code></a> PHP
+      function and will provide a new implementation:</li>
+    </ul>
+    <pre><code class="language-php line-numbers">$this->function->session_start = function () {
+    return false;
+};</code></pre>
+    <ul>
+      <li><strong>Constant</strong>, by using the <code>constant</code>
+      “asserter”; the following example will mock the
+      <a href="http://php.net/phpversion"><code>PHP_VERSION_ID</code></a>
+      constant and will provide a new value:</li>
+    </ul>
+    <pre><code class="language-php line-numbers">$this->constant->PHP_VERSION_ID = 606060; // troll spotted</code></pre>
+    <p>Mocks are generated at runtime and they are just that easy to use.</p>
   </section>
 
-  <section>
+  <section class="visual-section">
     <h2>Virtual file system</h2>
+
+    <p>When manipulating files or directories, having real files is not
+    required. atoum provides a virtual file system allowing to fake real files
+    and directories. Enter <code>atoum://</code>. The following example will
+    create a virtual file and the resulting resource can be used like any other
+    regular file resources:</p>
+    <pre><code class="language-php line-numbers">$file = atoum\mock\streams\fs\file::get('fakeFile');
+fwrite($file, 'foobar');
+rewind($file);
+// …
+stream_get_contents($file); // string(6) "foobar"</code></pre>
   </section>
 
-  <section>
+  <section class="visual-section">
     <h2>Reports</h2>
   </section>
 
-  <section>
+  <section class="visual-section">
+    <h2>Loop mode</h2>
+  </section>
+
+  <section class="visual-section">
+    <h2>Configuration file in PHP</h2>
+  </section>
+
+  <section class="visual-section">
     <h2>Third-party integration</h2>
   </section>
 
-  <section>
+  <section class="visual-section">
     <h2>Fast</h2>
   </section>
 
-  <section>
+  <section class="visual-section">
     <h2>Extensions</h2>
   </section>
 </script>
@@ -200,6 +329,9 @@
 <script src="/Static/Vendor/ember-data/ember-data.min.js"></script>
 <script src="/Static/Javascript/Application.js"></script>
 <script src="https://buttons.github.io/buttons.js" async defer id="github-bjs"></script>
+<script src="/Static/Vendor/prism/prism.js"></script>
+<script src="/Static/Vendor/prism/components/prism-php.js" async defer></script>
+<script src="/Static/Vendor/prism/plugins/line-numbers/prism-line-numbers.js" async defer></script>
 
 </body>
 </html>
