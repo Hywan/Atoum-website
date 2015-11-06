@@ -180,19 +180,19 @@
 
     <p>Depending of the kind of tests we are making, there is several ways to
     write a test case. The “classic” (old) way is procedural:</p>
-  <pre><code class="language-php line-numbers">$x      = 1;
+    <pre>{{#super-code language="php"}}$x      = 1;
 $y      = 2;
 $result = $x + $y;
 
-$this->boolean($result === 3)->isTrue();</code></pre>
+$this->boolean($result === 3)->isTrue();{{/super-code}}</pre>
     <p>The “smarter” way by really using atoum's asserters:</p>
-  <pre><code class="language-php line-numbers">$x      = 1;
+    <pre>{{#super-code language="php"}}$x      = 1;
 $y      = 2;
 $result = $x + $y;
 
-$this->integer($result)->isEqualTo(3);</code></pre>
+$this->integer($result)->isEqualTo(3);{{/super-code}}</pre>
     <p>The “academic” way:</p>
-    <pre><code class="language-php line-numbers">$this
+    <pre>{{#super-code language="php"}}$this
     ->given(
         $x = 1,
         $y = 2
@@ -200,7 +200,7 @@ $this->integer($result)->isEqualTo(3);</code></pre>
     ->when($result = $x + $y)
     ->then
         ->integer($result)
-            ->isEqualTo(3);</code></pre>
+            ->isEqualTo(3);{{/super-code}}</pre>
     <p>In the later example, the <code>given</code>, <code>when</code> and
     <code>then</code> keywords are “empty asserter”. They execute nothing.
     They are used to provide a better test case design.</p>
@@ -216,18 +216,18 @@ $this->integer($result)->isEqualTo(3);</code></pre>
     as possible. The following example asserts the integer <code>150</code> is
     greater than <code>100</code> and lower than or equal to
     <code>200</code>:</p>
-    <pre><code class="language-php line-numbers">$this
+    <pre>{{#super-code language="php"}}$this
     ->integer(150)
         ->isGreaterThan(100)
-        ->isLowerThanOrEqualTo(200);</code></pre>
+        ->isLowerThanOrEqualTo(200);{{/super-code}}</pre>
     <p>The following example asserts that <code>1 - 0.97</code> is nearly equal
     to <code>0.03</code> (which is
     <a href="http://www.floating-point-gui.de/errors/comparison/">strictly
     false in Computer Science</a>):</p>
-    <pre><code class="language-php line-numbers">$this
+    <pre>{{#super-code language="php"}}$this
     ->float(1 - 0.97)
         ->isNearlyEqualTo(0.03) // passes
-        ->isEqualTo(0.03);      // fails</code></pre>
+        ->isEqualTo(0.03);      // fails{{/super-code}}</pre>
     <p>Arrays, strings, objets… all of them have specific collections of
     asserters. In addition to provide a better readability, they provide a
     better <strong>feedback</strong> when a test fails because atoum knows what
@@ -248,26 +248,26 @@ $this->integer($result)->isEqualTo(3);</code></pre>
       will mock the <code>Foo\Bar</code> class and will provide a new
       implementation for the <code>methodBaz</code> method:</li>
     </ul>
-    <pre><code class="language-php line-numbers">$mockedObject = new \Mock\Foo\Bar();
+    <pre>{{#super-code language="php"}}$mockedObject = new \Mock\Foo\Bar();
 $mockedObject->methodBaz = function ($x) {
     return $x * 2;
-};</code></pre>
+};{{/super-code}}</pre>
     <ul>
       <li><strong>Function</strong>, by using the <code>function</code>
       “asserter”; the following example will mock the
       <a href="http://php.net/session_start"><code>session_start</code></a> PHP
       function and will provide a new implementation:</li>
     </ul>
-    <pre><code class="language-php line-numbers">$this->function->session_start = function () {
+    <pre>{{#super-code language="php"}}$this->function->session_start = function () {
     return false;
-};</code></pre>
+};{{/super-code}}</pre>
     <ul>
       <li><strong>Constant</strong>, by using the <code>constant</code>
       “asserter”; the following example will mock the
       <a href="http://php.net/phpversion"><code>PHP_VERSION_ID</code></a>
       constant and will provide a new value:</li>
     </ul>
-    <pre><code class="language-php line-numbers">$this->constant->PHP_VERSION_ID = 606060; // troll spotted</code></pre>
+    <pre>{{#super-code language="php"}}$this->constant->PHP_VERSION_ID = 606060; // troll spotted{{/super-code}}</pre>
     <p>Mocks are generated at runtime and they are just that easy to use.</p>
   </section>
 
@@ -279,11 +279,11 @@ $mockedObject->methodBaz = function ($x) {
     and directories. Enter <code>atoum://</code>. The following example will
     create a virtual file and the resulting resource can be used like any other
     regular file resources:</p>
-    <pre><code class="language-php line-numbers">$file = atoum\mock\streams\fs\file::get('fakeFile');
+    <pre>{{#super-code language="php"}}$file = atoum\mock\streams\fs\file::get('fakeFile');
 fwrite($file, 'foobar');
 rewind($file);
 // …
-stream_get_contents($file); // string(6) "foobar"</code></pre>
+stream_get_contents($file); // string(6) "foobar"{{/super-code}}</pre>
   </section>
 
   <section class="visual-section">

@@ -23,7 +23,6 @@ Application.ApplicationRoute = Ember.Route.extend({
     actions: {
         toggleMenu: function ()
         {
-            console.log('here');
             var menu = $('#menu');
 
             if ('false' === menu.attr('aria-selected')) {
@@ -40,6 +39,30 @@ Application.ApplicationRoute = Ember.Route.extend({
             this.controllerFor('application').transitionToRoute(ruleId);
             this.send('toggleMenu');
         }
+    }
+
+});
+
+Application.SuperCodeComponent = Ember.Component.extend({
+
+    tagName   : 'code',
+    classNames: ['line-numbers'],
+    language  : null,
+
+    didInsertElement: function ()
+    {
+        this._super();
+
+        var element = this.get('element');
+        element.classList.add('language-' + this.get('language'));
+
+        Ember.run.scheduleOnce(
+            'afterRender',
+            this,
+            function () {
+                Prism.highlightElement(element);
+            }
+        );
     }
 
 });
