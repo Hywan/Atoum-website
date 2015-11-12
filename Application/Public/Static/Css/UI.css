@@ -125,7 +125,8 @@ nav {
             content: '';
             position: absolute;
             top: 0;
-            height: 100vh;
+            min-height: 100vh;
+            height: 100%;
             width: 100vw;
             pointer-events: none;
             opacity: 0;
@@ -262,8 +263,12 @@ em em {
 li {
     position: relative;
     list-style: none;
-    margin-left: 1em;
 }
+
+    ul:not(.bare) li,
+    ol:not(.bare) li {
+        margin-left: 1em;
+    }
 
     li::before {
         position: absolute;
@@ -276,7 +281,7 @@ li {
 
 ul { }
 
-    ul > li::before {
+    ul:not(.bare) > li::before {
         content: "•";
     }
 
@@ -310,11 +315,11 @@ ol {
     }
 
 @media all and (max-width: 500px) {
-    li {
+    ul:not(.bare) li {
         margin-left: -1.3em;
     }
 
-    li li {
+    ul:not(.bare) li li {
         margin-left: -.25em;
     }
 }
@@ -410,6 +415,113 @@ pre {
         opacity: .7;
     }
 
+figure {
+    text-align: center;
+}
+
+table {
+    margin: 1em auto;
+    width: 100%;
+    max-width: 80%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    table thead tr:not(:first-child),
+    table tbody tr {
+        border-top: 1px rgb(210, 197, 172) solid;
+    }
+
+    table tbody tr.table--double-separator {
+        border-style: double;
+        border-width: 4px 0 0 0;
+    }
+
+    table th {
+        vertical-align: bottom;
+    }
+
+    table th,
+    table td {
+        vertical-align: top;
+        padding: 0 1em;
+        line-height: 2em;
+    }
+
+    table caption {
+        font-size: .8em;
+        line-height: 1.2em;
+        margin: 1em auto 0 auto;
+        caption-side: bottom;
+    }
+
 .text-center {
     text-align: center;
+}
+
+.block-list {
+    display: block;
+    text-align: center;
+}
+
+    .block-list > *:not(:last-child) {
+        margin-right: 2em;
+    }
+
+    .block-list > * {
+        display: inline-block;
+        text-align: initial;
+        vertical-align: top;
+    }
+
+.columns { }
+
+    .columns[data-columns='2'] {
+        columns: 2;
+        -moz-columns: 2;
+        -webkit-columns: 2;
+    }
+
+    .columns[data-columns='3'] {
+        columns: 3;
+        -moz-columns: 3;
+        -webkit-columns: 3;
+    }
+
+    .columns[data-columns='4'] {
+        columns: 4;
+        -moz-columns: 4;
+        -webkit-columns: 4;
+    }
+
+    .columns[data-columns='5'] {
+        columns: 5;
+        -moz-columns: 5;
+        -webkit-columns: 5;
+    }
+
+    .columns[data-columns='6'] {
+        columns: 6;
+        -moz-columns: 6;
+        -webkit-columns: 6;
+    }
+
+    .columns[data-columns='7'] {
+        columns: 7;
+        -moz-columns: 7;
+        -webkit-columns: 7;
+    }
+
+    .columns[data-columns='8'] {
+        columns: 8;
+        -moz-columns: 8;
+        -webkit-columns: 8;
+    }
+
+@media all and (max-width: 799px) {
+    .columns[data-columns] {
+        columns: 1;
+        -moz-columns: 1;
+        -webkit-columns: 1;
+    }
 }
