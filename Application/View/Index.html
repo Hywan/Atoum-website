@@ -87,7 +87,7 @@
 <script type="text/x-handlebars" id="index">
   <h1>atoum</h1>
 
-  <p class="text-center">
+  <p style="text-align: center">
     <a
       aria-label="Star atoum/atoum on GitHub"
       data-count-aria-label="# stargazers on GitHub"
@@ -142,7 +142,7 @@
 <script type="text/x-handlebars" id="features">
   <h1>Features</h1>
 
-  <p class="text-center">
+  <p class="header__paragraph">
     atoum is a full-featured testing framework. Judge for yourself.
   </p>
 
@@ -469,6 +469,75 @@ $runner->addTestsFromDirectory(__DIR__ . '/Test/Unit/');
 
 <script type="text/x-handlebars" id="sources">
   <h1>Sources</h1>
+
+  <p class="header__paragraph">atoum is easy to install</p>
+
+  <h2>Release process</h2>
+
+  <p>Historically, atoum is a
+  <a href="https://en.wikipedia.org/wiki/Rolling_release">rolling-release</a>
+  software, it means without any versions. While this is very challenging
+  because no regression must be introduced, this is not always comfortable for
+  atoum's users that need versions, especially with a quality tool. That's why
+  atoum uses <a href="http://www.semver.org/">the semantic versioning
+  specification</a> too.</p>
+  <p><a href="https://github.com/atoum/atoum/releases/latest">Latest atoum's
+  version</a> is: <code>2.3.0</code>. A
+  <a href="https://github.com/atoum/atoum/blob/master/CHANGELOG.md"><code>CHANGELOG.md</code>
+  file</a> is maintained up-to-date.</p>
+
+  <p>atoum has 2 release managers. They apply the following rules:</p>
+  <ol>
+    <li>If a bug has been fixed, a new version is released as soon as
+    possible (it addresses the <code>z</code> in <code>x.y.z</code>),</li>
+    <li>Every 6 weeks, a new version is released containing the new
+    features (it addresses the <code>y</code> in <code>x.y.z</code>),</li>
+    <li>If a backward-compatibility break is required, 2 new versions are
+    released: A first one only with the new features and a second one only with
+    the backward-compatibility break (it addresses the <code>x</code> in
+    <code>x.y.z</code>).</li>
+  </ol>
+  <p>Current release managers have been elected by the community and they are:
+  Mikaël Randy and Ivan Enderlin.</p>
+
+  <h2>With Composer</h2>
+
+  <p>The <a href="https://getcomposer.org/">Composer</a> tool is a dependency
+  manager. All atoum's projects are registered on
+  <a href="https://packagist.org/search/?q=atoum/">Packagist</a> repository
+  under the names <code>atoum/<em>project</em></code>. Thus, the unit
+  framework is registered under <code>atoum/atoum</code> and extensions are
+  registered under <code>atoum/<em>extension-name</em>-extension</code>.
+  Consequently, assuming Composer is already installed, we need to write the
+  following document in a <code>composer.</code> file:</p>
+  <pre>{{#super-code language="json"}}{
+    "require-dev": {
+        "atoum/atoum": "~2.0"
+    }
+}{{/super-code}}</pre>
+  <p>This notation means: All versions greater than <code>2.0</code> and lower
+  than <code>3.0</code>, i.e. the latest safe major version until the next
+  incompatible change in the API.</p>
+  <p>One might notice that <code>atoum/atoum</code> has been added as a
+  <code>require-dev</code>, saying a development requirement. In fact, we are
+  more likely to use atoum as a development tool rather than a production tool.
+  Running tests in production does not sound a good idea. This may be done
+  before releasing a software.</p>
+  <p>Thus, to finally install atoum, simply run:</p>
+  <pre>{{#super-code language="shell"}}$ composer install{{/super-code}}</pre>
+  <p>Composer also comes with a handy command-line tool that will save (by
+  writing in the appropriate <code>composer.json</code> file) and install your
+  dependency directly:</p>
+  <pre>{{#super-code language="shell"}}$ composer require --dev atoum/atoum{{/super-code}}</pre>
+  <p>Composer will try to use a version syntax allowing to safely update to the
+  latest version.</p>
+
+  <h2>With a PHAR</h2>
+
+  <h2>Repositories</h2>
+
+  <p><a href="https://github.com/atoum/atoum">Repositories are hosted on
+  Github</a> under the eponym organization: atoum.</p>
 </script>
 
 <script type="text/x-handlebars" id="community">

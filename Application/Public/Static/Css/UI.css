@@ -239,6 +239,10 @@ h2 { }
         font-size: 1em;
     }
 
+    .header__paragraph {
+        text-align: center;
+    }
+
 p {
     margin: 1em 0;
     clear: both;
