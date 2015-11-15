@@ -252,7 +252,8 @@ p {
         margin-bottom: 0;
     }
 
-article a:not(.bare) {
+article a:not(.bare),
+footer a:not(.bare) {
     color: rgb(157, 92, 87);
     text-decoration: none;
     padding: .2em .2em .15em;

@@ -481,8 +481,8 @@ $runner->addTestsFromDirectory(__DIR__ . '/Test/Unit/');
   atoum's users that need versions, especially with a quality tool. That's why
   atoum uses <a href="http://www.semver.org/">the semantic versioning
   specification</a> too.</p>
-  <p><a href="https://github.com/atoum/atoum/releases/latest">Latest atoum's
-  version</a> is: <code>2.3.0</code>. A
+  <p><a href="{{model.releases.latest.page_url}}">Latest atoum's
+  version</a> is: <code>{{model.releases.latest.name}}</code>. A
   <a href="https://github.com/atoum/atoum/blob/master/CHANGELOG.md"><code>CHANGELOG.md</code>
   file</a> is maintained up-to-date.</p>
 
@@ -500,25 +500,26 @@ $runner->addTestsFromDirectory(__DIR__ . '/Test/Unit/');
   <p>Current release managers have been elected by the community and they are:
   Mikaël Randy and Ivan Enderlin.</p>
 
-  <h2>With Composer</h2>
+  <h2>Install with Composer</h2>
 
   <p>The <a href="https://getcomposer.org/">Composer</a> tool is a dependency
   manager. All atoum's projects are registered on
   <a href="https://packagist.org/search/?q=atoum/">Packagist</a> repository
-  under the names <code>atoum/<em>project</em></code>. Thus, the unit
+  under the names <code>atoum/<em>project</em></code>. Thus, the test
   framework is registered under <code>atoum/atoum</code> and extensions are
   registered under <code>atoum/<em>extension-name</em>-extension</code>.
   Consequently, assuming Composer is already installed, we need to write the
   following document in a <code>composer.</code> file:</p>
-  <pre>{{#super-code language="json"}}{
+  <pre>{{#super-code language="javascript"}}{
     "require-dev": {
-        "atoum/atoum": "~2.0"
+        "atoum/atoum": "{{model.composer.latest_version}}"
     }
 }{{/super-code}}</pre>
-  <p>This notation means: All versions greater than <code>2.0</code> and lower
-  than <code>3.0</code>, i.e. the latest safe major version until the next
-  incompatible change in the API.</p>
-  <p>One might notice that <code>atoum/atoum</code> has been added as a
+  <p>This notation means: All versions greater than
+  <code>{{model.composer.current_x}}.0</code> and lower
+  than <code>{{model.composer.next_x}}.0</code>, i.e. the latest safe major
+  version until the next incompatible change in the API.</p>
+  <p>One might notice that <code>atoum/atoum</code> has been declared as a
   <code>require-dev</code>, saying a development requirement. In fact, we are
   more likely to use atoum as a development tool rather than a production tool.
   Running tests in production does not sound a good idea. This may be done
@@ -531,13 +532,36 @@ $runner->addTestsFromDirectory(__DIR__ . '/Test/Unit/');
   <pre>{{#super-code language="shell"}}$ composer require --dev atoum/atoum{{/super-code}}</pre>
   <p>Composer will try to use a version syntax allowing to safely update to the
   latest version.</p>
+  <p>Finally, to update atoum, simply run:</p>
+  <pre>{{#super-code language="shell"}}$ composer update atoum/atoum{{/super-code}}</pre>
+  <p>Now, the <code>atoum</code> binary will be located in
+  <code>vendor/bin/atoum</code>. Testing atoum is working well can be achieved
+  by running its own test suites:</p>
+  <pre>{{#super-code language="shell"}}$ vendor/bin/atoum --version
+$ vendor/bin/atoum --test-it{{/super-code}}</pre>
+  <p>The first line will print the version of atoum.</p>
 
-  <h2>With a PHAR</h2>
+  <h2>Install with a PHAR</h2>
+
+  <p>PHP provides a <a href="http://php.net/phar">PHAR</a> file format, which is
+  an executable archive likely to contain PHP code. atoum can be used inside a
+  PHAR file.</p>
+  <p>It is possible to <a href="{{model.releases.latest.pharball_url}}">download
+  the latest PHAR ball</a> manually or to install it with
+  <a href="http://curl.haxx.se/">cURL</a> by running:</p>
+  <pre>{{#super-code language="shell"}}$ curl -L {{model.releases.latest.pharball_url}} > /usr/local/bin/atoum.phar{{/super-code}}</pre>
+  <p>Finally, to update atoum, simply run:</p>
+  <pre>{{#super-code language="shell"}}$ php -dphar.readonly=0 atoum.phar --update{{/super-code}}</pre>
+  <p>Note the <code>-dphar.readonly=0</code> option to make the PHAR writable
+  for this execution.</p>
 
   <h2>Repositories</h2>
 
-  <p><a href="https://github.com/atoum/atoum">Repositories are hosted on
-  Github</a> under the eponym organization: atoum.</p>
+  <p>atoum is using <a href="http://git-scm.com/">Git</a>.
+  <a href="https://github.com/atoum/atoum">Repositories are hosted on Github</a>
+  under the eponym organization: atoum.</p>
+  <p>Github is used to manage and track bugs, issues, roadmap etc. If you would
+  like to report a bug, this will happen there.</p>
 </script>
 
 <script type="text/x-handlebars" id="community">
